@@ -1,16 +1,24 @@
-import React from 'react';
-import Simple from './src/SimpleComponent';
-import { Image, View } from 'react-native';
+import React, { Component } from 'react';
+import {StyleSheet, Text, View } from 'react-native';
+
+const styles = StyleSheet.create({
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+  },
+});
 
 export default function App() {
-  var pic = {
-    uri: 'https://ouseful.files.wordpress.com/2012/07/proglanginfluence.png'
-  };
   return (
-    <View style={{flex: 1, alignItems: 'center', top: 50}}>
-      <Image source={pic} style={{width: 422, height: 315}}/>
-      <Simple text="Hola React Native!" />
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text style={styles.red}>Rojo</Text>
+      <Text style={styles.bigBlue}>Azul grande</Text>
+      <Text style={[styles.bigBlue, styles.red]}>Azul grande luego rojo</Text>
+      <Text style={[styles.red, styles.bigBlue]}>Rojo luego azul grande</Text>
     </View>
-    
   );
 }
