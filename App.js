@@ -7,16 +7,23 @@ class HomeScreen extends React.Component {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Home Screen</Text>
         <Button title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')} />
+          onPress={() => this.props.navigation.navigate('Details',
+          {
+            id: 86,
+            name: 'Producto 86',
+          })} />
       </View>
     );
   }
 }
 class DetailsScreen extends React.Component {
   render() {
+    const { navigation } = this.props;
+    const id = navigation.getParam("id", 0);
+    const name = navigation.getParam("name", "");
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Details Screen</Text>
+        <Text>id: {id} - {name}</Text>
       </View>
     );
   }
