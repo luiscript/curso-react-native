@@ -1,48 +1,30 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
-import { createStackNavigator, createAppContainer  } from "react-navigation";
+import React from 'react';
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-  };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen</Text>
-        <Button title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details',
-          { id: 86, name: 'Producto 86',})} />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
       </View>
     );
   }
 }
-class DetailsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Product detail',
-  };
+
+class SettingsScreen extends React.Component {
   render() {
-    const { navigation } = this.props;
-    const id = navigation.getParam("id", 0);
-    const name = navigation.getParam("name", "");
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>id: {id} - {name}</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
       </View>
     );
   }
 }
-const AppNavigator = createStackNavigator(
-  { Home: HomeScreen, Details: DetailsScreen },
-  {
-    defaultNavigationOptions: {
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: '#f00',
-      },
-    },
-    navigationOptions: {
-      tabBarLabel: 'Home!',
-    },
-  }
-);
-export default createAppContainer(AppNavigator);
+
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Settings: SettingsScreen,
+});
+
+export default createAppContainer(TabNavigator);
